@@ -3,7 +3,7 @@ name = "Alzheimer's Disease & Healthy Aging"
 version = "1.0.0"
 description = "<UPDATE ME>"
 authors = [
-  {name = "Your Name", email = "you@example.com"},
+  {name = "Michael Gov", email = "mgov@uw.edu"},
   {name = "Your Name", email = "you@example.com"},
   {name = "Your Name", email = "you@example.com"}
 ]
