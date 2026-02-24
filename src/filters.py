@@ -14,7 +14,6 @@ def render_filters(df: pd.DataFrame) -> dict:
     ageGroup = st.sidebar.selectbox("Age Group", ageGroup, index=0)
     demographic = st.sidebar.selectbox("Sex/Ethnicity", demographic, index=0)
 
-    # TODO (DEMO): Convert this selectbox to a multiselect (and update filtering logic)
     topic = st.sidebar.multiselect(
         "Topic",
         topic,
@@ -22,7 +21,7 @@ def render_filters(df: pd.DataFrame) -> dict:
     )
 
     min_rt = df["YearStart"].dropna().min()
-    max_rt = df["YearStart"].dropna().max()
+    max_rt = df["YearEnd"].dropna().max()
     rt_range = st.sidebar.slider(
         "Year Range",
         min_value=int(min_rt),
