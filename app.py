@@ -53,5 +53,28 @@ def main() -> None:
 
     st.divider()
 
+    st.write("test map")
+    df[['Longitude', 'Latitude']] = df['Geolocation'].str.extract(
+        r'POINT \(([-\d.]+) ([-\d.]+)\)'
+    ).astype(float)
+
+    st.write(df[['Geolocation', 'Latitude', 'Longitude']].head())
+
+    st.subheader("Interactive Map of Responses")
+    fig = px.scatter_mapbox(
+        df,
+        lat="Latitude",
+        lon="Longitude",
+        color="Class",  # optional: color by a column
+        hover_name="Topic",  # optional: hover info
+        zoom=2,  # starting zoom
+        height=500
+    )
+
+    fig.update_layout(mapbox_style="open-street-map")
+    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+
+    st.plotly_chart(fig, use_container_width=True)
+
 if __name__ == "__main__":
     main()
