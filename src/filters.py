@@ -7,12 +7,12 @@ def render_filters(df: pd.DataFrame) -> dict:
     """Rendering filter widgets and returning the chosen values."""
     st.sidebar.header("Filters")
 
-    AgeGroup = ["All Age Groups"] + sorted(df["AgeGroup"].unique().tolist())
-    Demographic = ["All"] + sorted(df["Demographic"].dropna().astype(str).str.strip().unique().tolist())
-    topic = sorted(df["Class"].dropna().astype(str).unique().tolist())
+    ageGroup = ["All Age Groups"] + sorted(df["AgeGroup"].unique().tolist())
+    demographic = ["All"] + sorted(df["Demographic"].dropna().astype(str).str.strip().unique().tolist())
+    topic = sorted(df["Topic"].dropna().astype(str).unique().tolist())
 
-    AgeGroup = st.sidebar.selectbox("Age Group", AgeGroup, index=0)
-    Demographic = st.sidebar.selectbox("Sex/Ethnicity", Demographic, index=0)
+    ageGroup = st.sidebar.selectbox("Age Group", ageGroup, index=0)
+    demographic = st.sidebar.selectbox("Sex/Ethnicity", demographic, index=0)
 
     # TODO (DEMO): Convert this selectbox to a multiselect (and update filtering logic)
     topic = st.sidebar.multiselect(
@@ -21,8 +21,8 @@ def render_filters(df: pd.DataFrame) -> dict:
         default=[]
     )
 
-    # Response time slider
-    min_rt, max_rt = df["YearStart"].dropna().min(), df["YearEnd"].dropna().max()
+    min_rt = df["YearStart"].dropna().min()
+    max_rt = df["YearStart"].dropna().max()
     rt_range = st.sidebar.slider(
         "Year Range",
         min_value=int(min_rt),
@@ -30,13 +30,11 @@ def render_filters(df: pd.DataFrame) -> dict:
         value=(int(min_rt), int(max_rt)),
         step=1,
     )
-
-    # TODO (IN-CLASS): Add a checkbox toggle to cap outliers (e.g., at 99th percentile)
     cap_outliers = st.sidebar.checkbox("Cap extreme data values", value=False)
 
     return {
-        "AgeGroup": AgeGroup,
-        "Demographic": Demographic,
+        "AgeGroup": ageGroup,
+        "Demographic": demographic,
         "Topic": topic,
         "rt_range": rt_range,
         "cap_outliers": cap_outliers,
@@ -44,7 +42,6 @@ def render_filters(df: pd.DataFrame) -> dict:
 
 
 def apply_filters(df: pd.DataFrame, selections: dict) -> pd.DataFrame:
-    """Applying filter selections to the dataframe."""
     out = df.copy()
 
     if selections["AgeGroup"] != "All Age Groups":
@@ -54,15 +51,14 @@ def apply_filters(df: pd.DataFrame, selections: dict) -> pd.DataFrame:
         out = out[out["Demographic"] == selections["Demographic"]]
 
     if selections["Topic"]:
-        out = out[out["Class"].isin(selections["Topic"])]
+        out = out[out["Topic"].isin(selections["Topic"])]
 
     lo, hi = selections["rt_range"]
     out = out[(out["YearStart"] >= lo) & (out["YearEnd"] <= hi)]
 
-    # TODO (IN-CLASS): Implement outlier capping when cap_outliers is checked
-    # HINT: use out["response_time_days"].quantile(0.99)
-    if selections["cap_outliers"]:
-        cap = out["Data_Value"].quantile(0.99)
-        out = out[out["Data_Value"] <= cap]
+    if selections.get("cap_outliers") and {"Low_Confidence_Limit", "High_Confidence_Limit"} <= set(out.columns):
+        width = (out["High_Confidence_Limit"] - out["Low_Confidence_Limit"]).abs()
+        cutoff = width.quantile(0.99)
+        out = out[width <= cutoff]
 
     return out.reset_index(drop=True)

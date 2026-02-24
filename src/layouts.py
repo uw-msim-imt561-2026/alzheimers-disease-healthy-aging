@@ -2,41 +2,50 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from src.charts import plot_response_hist, plot_borough_bar
+from src.charts import plot_response_trend, plot_demo_bar
 
 # KPI METRICS
 def header_metrics(df: pd.DataFrame) -> None:
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
     with c1:
-        st.metric("Total Questions", len(df))
+        st.metric("Total Records", len(df))
     with c2:
-        median_val = df["Data_Value"].median()
-        st.metric("Median Values", round(float(median_val), 2))
+        avg_val = df["Data_Value"].mean()
+        st.metric("Avg. Overall Reporting", f"{round(float(avg_val), 2):.2f}%")
     with c3:
-        most_common = df["Class"].dropna().mode().squeeze() or "—"
-        st.metric("Most common topic", str(most_common))
+        q_avg = df.groupby("Question")["Data_Value"].mean()
+        if not q_avg.empty:
+            top_q = q_avg.idxmax()
+            st.metric("Highest Avg. Indicator",f"{q_avg[top_q]:.2f}%",help=top_q)
+        else:
+            st.metric("Highest Avg. Indicator", "—")
+    with c4:
+        demo_avg = df.groupby("Demographic")["Data_Value"].mean()
+        if not demo_avg.empty:
+            top_demo = demo_avg.idxmax()
+            st.metric("Largest Demographic",f"{demo_avg[top_demo]:.2f}%",help=top_demo)
+        else:
+            st.metric("Largest Demographic", "—")
 
 
 def body_layout_tabs(df: pd.DataFrame) -> None:
     """Tabs layout with 3 default tabs."""
-    t1, t2, t3 = st.tabs(["Distribution", "By Age", "Map"])
+    t1, t2, t3 = st.tabs(["Count", "By Demographic", "Map"])
 
     with t1:
-        st.subheader("Response Time Distribution")
-        plot_response_hist(df)
-        st.write("From this chart, we can see that common response times for complaints usually are within 3-7 days.")
+        st.subheader("Count of Questionnaires by Years")
+        plot_response_trend(df)
 
     with t2:
-        st.subheader("Data Value by Age Group")
-        plot_borough_bar(df)
+        st.subheader("Count by Race/Ethnicity")
+        plot_demo_bar(df)
 
-        # TODO (IN-CLASS): Add a second view here (e.g., count by borough)
-        st.subheader("Count by Age Group")
-        counts = df["AgeGroup"].value_counts().sort_values()
+        st.subheader("Count by Sex")
+        counts = df[df["DemographicCategory"] == "Sex"]["Demographic"].value_counts().sort_values()
         st.bar_chart(counts)
 
     with t3:
-        st.subheader("Filtered Rows")
+        st.subheader("Map")
         st.dataframe(df, use_container_width=True, height=480)
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button(
