@@ -76,5 +76,7 @@ def main() -> None:
             st.subheader("Filtered Rows")
             st.dataframe(df_f, use_container_width=True, height=420)
 
+    st.divider()
+
 if __name__ == "__main__":
     main()
