@@ -8,8 +8,8 @@ Feb 24, 2026
 This dashboard presents data from the **CDC’s Alzheimer’s Disease and Healthy Aging** dataset, collected between 2015 and 
 2022 through the Behavioral Risk Factor Surveillance System (BRFSS). The visualizations focus on indicators **related to
 cognitive decline, mental health, smoking, and alcohol use**, allowing users to explore trends and demographic patterns 
-across multiple dimensions of public health. The dashboard features four interactive visualizations, including _bar 
-charts, a line chart, a geographic map, and [insert final visualization type]_, each designed to support exploratory 
+across multiple dimensions of public health. The dashboard features four interactive visualizations, including **bar 
+charts, a line chart, a geographic map, and polar chart**, each designed to support exploratory 
 analysis and comparison across variables. 
 
 Users can dynamically filter results by **age group, demographic category, topic, and year range,** enabling customized 

@@ -111,6 +111,7 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
 
     with t4:
         st.subheader("Percentage of Responses by State ")
+        st.write("Shows relative percentage of responses grouped by state.")
         valid_states = [
             "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
             "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",

@@ -1,18 +1,19 @@
 [project]
-name = "Alzheimer's Disease & Healthy Aging"
+name = "alzheimers-disease-healthy-aging"
 version = "1.0.0"
-description = "<UPDATE ME>"
+description = "Data recorded is from 2015-2022. This dataset is from the Behavioral Risk Factor Surveillance System (BRFSS) and published by the Division of Population Health."
 authors = [
   {name = "Michael Gov", email = "mgov@uw.edu"},
   {name = "Shawn N Canonizado", email = "snsc@uw.com"},
-  {name = "Your Name", email = "you@example.com"}
+  {name = "Nicole Ni", email = "ninico@uw.edu"}
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.11.12"
 dependencies = [
     "streamlit (>=1.54.0,<2.0.0)",
     "pandas (>=2.0.0,<3.0.0)",
     "numpy (>=2.4.2,<3.0.0)"
 ]
+package-mode = false
 
 
 [build-system]
