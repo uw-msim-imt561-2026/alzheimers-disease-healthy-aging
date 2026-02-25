@@ -81,3 +81,34 @@ def plot_sex_bar(df: pd.DataFrame) -> None:
         title=None,
     )
     st.plotly_chart(fig, use_container_width=True)
+
+def plot_map(df: pd.DataFrame) -> None:
+
+    if "LocationAbbr" not in df.columns:
+        st.error("LocationAbbr column not found.")
+        return
+
+    # Count responses per state (respects filters automatically)
+    state_counts = (
+        df.groupby("LocationAbbr")
+        .size()
+        .reset_index(name="Count")
+    )
+
+    if state_counts.empty:
+        st.warning("No data available.")
+        return
+
+    fig = px.choropleth(
+        state_counts,
+        locations="LocationAbbr",
+        locationmode="USA-states",
+        color="Count",
+        scope="usa",
+        color_continuous_scale=[(0, "green"), (0.5, "yellow"), (1, "red")],
+        labels={"Count": "Number of Responses"}
+    )
+
+    fig.update_layout(height=600)
+
+    st.plotly_chart(fig, use_container_width=True)

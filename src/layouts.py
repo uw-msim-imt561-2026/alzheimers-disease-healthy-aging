@@ -2,7 +2,8 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from src.charts import plot_response_trend, plot_demo_bar, plot_sex_bar
+from src.charts import plot_response_trend, plot_demo_bar, plot_sex_bar, plot_map
+
 
 # KPI METRICS
 def header_metrics(df: pd.DataFrame) -> None:
@@ -104,12 +105,7 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
         plot_response_trend(df)
 
     with t3:
-        st.subheader("Map")
-        st.dataframe(df, use_container_width=True, height=480)
-        csv = df.to_csv(index=False).encode("utf-8")
-        st.download_button(
-            label="Download the filtered rows",
-            data=csv,
-            file_name="filtered_data.csv",
-            mime='text/csv',
-        )
+        st.subheader("Chloropleth Map of Topic Prevalence")
+        st.write("Shows counts of selected topics on a Red-Green Scale, with red being higher prevalence")
+        plot_map(df)
+
