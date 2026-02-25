@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from src.charts import plot_response_trend, plot_demo_bar, plot_sex_bar, plot_map
+from src.charts import plot_response_trend, plot_demo_bar, plot_sex_bar, plot_map, plot_radial_bar
 
 
 # KPI METRICS
@@ -88,7 +88,7 @@ def header_metrics(df: pd.DataFrame) -> None:
 
 def body_layout_tabs(df: pd.DataFrame) -> None:
     """Tabs layout with 3 default tabs."""
-    t1, t2, t3 = st.tabs(["Demographic", "Trends","Map"])
+    t1, t2, t3, t4 = st.tabs(["Demographic", "Trends","Map", "Polar Chart"])
 
     with t1:
         st.subheader("Distribution by Race/Ethnicity")
@@ -103,8 +103,26 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
         st.subheader("Yearly Reporting Trend")
         st.write("Average reported percentage by year with overall average reference line.")
         plot_response_trend(df)
+
     with t3:
         st.subheader("Chloropleth Map of Topic Prevalence")
         st.write("Shows counts of selected topics on a Red-Green Scale, with red being higher prevalence")
         plot_map(df)
 
+    with t4:
+        st.subheader("Percentage of Responses by State ")
+        valid_states = [
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
+            "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT",
+            "VA", "WA", "WV", "WI", "WY"
+        ]
+        df = df[df["LocationAbbr"].isin(valid_states)]
+        df_percentage = (
+            df.groupby("LocationAbbr")
+            .size()
+            .reset_index(name="Count")
+        )
+        df_percentage["Percentage"] = 100 * df_percentage["Count"] / df_percentage["Count"].sum()
+
+        plot_radial_bar(df_percentage, value_col="Percentage")

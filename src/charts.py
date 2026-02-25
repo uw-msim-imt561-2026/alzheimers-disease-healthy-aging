@@ -115,3 +115,35 @@ def plot_map(df: pd.DataFrame) -> None:
     fig.update_layout(height=600)
 
     st.plotly_chart(fig, use_container_width=True)
+
+def plot_radial_bar(df: pd.DataFrame, value_col: str = "Percentage") -> None:
+    if "LocationAbbr" not in df.columns:
+        st.error("LocationAbbr column not found in dataframe.")
+        return
+    if value_col not in df.columns:
+        st.error(f"{value_col} column not found in dataframe.")
+        return
+
+    df_sorted = df.sort_values(by=value_col, ascending=False)
+
+    fig = px.bar_polar(
+        df_sorted,
+        r=value_col,  # radial length = percentage
+        theta="LocationAbbr",  # angle = state
+        color=value_col,  # color intensity = value
+        color_continuous_scale=px.colors.sequential.Oranges,
+        template="ggplot2",
+        hover_data = {"LocationAbbr": True, value_col: ":.2f"}
+    )
+
+    fig.update_layout(
+        height=600,
+        font=dict(size=12),
+        polar = dict(
+            radialaxis=dict(
+                tickfont=dict(size=14, color="black")
+            )
+        )
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
