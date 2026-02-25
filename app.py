@@ -14,8 +14,9 @@ def main() -> None:
     )
 
     st.title("CDC Alzheimer's Disease and Healthy Aging Dashboard")
-    st.caption("Data recorded is from 2015-2022. This dataset is from the Behavioral Risk Factor Surveillance System (BRFSS).")
-    st.caption("Last updated on: February 24th, 2026")
+    st.caption("Data recorded is from 2015-2022. This dataset is from the Behavioral Risk Factor Surveillance System (BRFSS) and published"
+               " by the Division of Population Health.")
+    st.caption("Dataset last updated on: February 14th, 2025")
 
     df = load_data("data/sample.csv")
 
