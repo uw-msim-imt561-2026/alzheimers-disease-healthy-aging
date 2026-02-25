@@ -88,22 +88,21 @@ def header_metrics(df: pd.DataFrame) -> None:
 
 def body_layout_tabs(df: pd.DataFrame) -> None:
     """Tabs layout with 3 default tabs."""
-    t1, t2, t3 = st.tabs(["By Demographic", "By Year","Map"])
+    t1, t2, t3 = st.tabs(["Demographic", "Trends","Map"])
 
     with t1:
-        st.subheader("Count by Race/Ethnicity")
-        st.write("Measure how many questions we're asked according to Race/Ethnicity")
+        st.subheader("Distribution by Race/Ethnicity")
+        st.write("Number of survey responses grouped by race and ethnicity category.")
         plot_demo_bar(df)
 
-        st.subheader("Count by Sex")
-        st.write("Measure how many questions we're asked according to Sex")
+        st.subheader("Distribution by Sex")
+        st.write("Number of survey responses grouped by sex.")
         plot_sex_bar(df)
 
     with t2:
-        st.subheader("Percentage by Year")
-        st.write("Calculates percentages by year")
+        st.subheader("Yearly Reporting Trend")
+        st.write("Average reported percentage by year with overall average reference line.")
         plot_response_trend(df)
-
     with t3:
         st.subheader("Chloropleth Map of Topic Prevalence")
         st.write("Shows counts of selected topics on a Red-Green Scale, with red being higher prevalence")

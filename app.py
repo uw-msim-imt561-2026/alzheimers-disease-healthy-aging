@@ -40,12 +40,13 @@ def main() -> None:
     # -------------------------
     # Tabs layout by default (3 tabs)
     tab_choice = st.radio(
-        "Choose a layout for the body:",
-        ["Visualizations (4)", "Table"],
+        "Please select a tab:",
+        ["Data Visualizations (4)", "Table"],
         horizontal=True,
+        help="Graphs and table are both interactive"
     )
 
-    if tab_choice == "Visualizations (4)":
+    if tab_choice == "Data Visualizations (4)":
         body_layout_tabs(df_f)
     else:
         st.subheader("Table")

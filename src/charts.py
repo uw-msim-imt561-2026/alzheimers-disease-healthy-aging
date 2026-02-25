@@ -21,6 +21,7 @@ def plot_response_trend(df: pd.DataFrame) -> None:
         yearly,
         x="YearEnd",
         y="Percent",
+        labels={"YearEnd": "year"},
         markers=True,
         title=None,
     )
@@ -56,6 +57,7 @@ def plot_demo_bar(df: pd.DataFrame) -> None:
     fig = px.bar(
         agg,
         x="Demographic",
+        labels={"Demographic": "Race/Ethnicity"},
         y="Count",
         title=None,
     )
@@ -77,6 +79,7 @@ def plot_sex_bar(df: pd.DataFrame) -> None:
     fig = px.bar(
         agg,
         x="Demographic",
+        labels={"Demographic": "Sex"},
         y="Count",
         title=None,
     )
