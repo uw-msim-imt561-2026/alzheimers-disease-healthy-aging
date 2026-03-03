@@ -91,13 +91,17 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
     t1, t2, t3, t4 = st.tabs(["Demographic", "Trends","Map", "Polar Chart"])
 
     with t1:
-        st.subheader("Distribution by Race/Ethnicity")
-        st.write("Number of survey responses grouped by race and ethnicity category.")
-        plot_demo_bar(df)
+        categories = df["DemographicCategory"].dropna().unique().tolist()
 
-        st.subheader("Distribution by Sex")
-        st.write("Number of survey responses grouped by sex.")
-        plot_sex_bar(df)
+        if "Race/Ethnicity" in categories:
+            st.subheader("Distribution by Race/Ethnicity")
+            st.write("Number of survey responses grouped by race and ethnicity category.")
+            plot_demo_bar(df)
+
+        if "Sex" in categories:
+            st.subheader("Distribution by Sex")
+            st.write("Number of survey responses grouped by sex.")
+            plot_sex_bar(df)
 
     with t2:
         st.subheader("Yearly Reporting Trend")
