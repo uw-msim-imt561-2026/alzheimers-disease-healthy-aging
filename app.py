@@ -16,13 +16,15 @@ def main() -> None:
     st.title("CDC Alzheimer's Disease and Healthy Aging Dashboard")
     st.caption("Data recorded is from 2015-2022. This dataset is from the Behavioral Risk Factor Surveillance System (BRFSS) and published"
                " by the Division of Population Health.")
-    st.caption("Dataset last updated on: February 14th, 2025")
+    st.caption("[Click here to access the Github Repository](https://github.com/uw-msim-imt561-2026/alzheimers-disease-healthy-aging)")
+    st.caption("Dataset last updated on: [February 14th, 2025](https://data.cdc.gov/Healthy-Aging/Alzheimer-s-Disease-and-Healthy-Aging-Data/hfr9-rurv/about_data)")
 
     df = load_data("data/sample.csv")
 
-    row_count = len(df)
-    st.write("Total Number of Rows:", row_count)
-    st.write(df['Class'].value_counts())
+    # Basic Stats to check for data
+    # row_count = len(df)
+    # st.write("Total Number of Rows:", row_count)
+    # st.write(df['Class'].value_counts())
 
     # -------------------------
     # Filters (sidebar by default)

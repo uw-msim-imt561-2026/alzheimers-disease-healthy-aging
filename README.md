@@ -22,15 +22,19 @@ across years and groups.
 
 The primary stakeholders for this dashboard are public health decision-makers at the local, state, and federal levels. 
 These include roles such as:
+<ul>
 <li>State and local health department officials</li>
 <li>Public health analysts</li>
 <li>Directors of regional/county health organizations</li>
+</ul>
 
 These stakeholders are responsible for:
+<ul>
 <li>Monitoring population health trends</li>
 <li>Identifying at-risk populations</li>
 <li>Allocating public health resources</li>
 <li>Developing prevention and intervention strategies</li>
+</ul>
 
 Because their work involves large-scale policy development and strategic planning, 
 they require tools that allow them to quickly interpret patterns across geographic regions, 
@@ -42,11 +46,13 @@ transforming complex survey data into accessible visual insights.
 The dataset used in this dashboard comes from the Centers for Disease Control and Prevention (CDC) and is sourced
 from the Behavioral Risk Factor Surveillance System (BRFSS). The dataset comes from **2015-2022**, includes percentage-based survey responses
 and covers topics related to:
+<ul>
 <li>Cognitive decline and mental health</li>
 <li>Overall health</li>
 <li>Substance and medication usage</li>
 <li>Questions concerning varied situations (weight, diet, injuries)</li>
 <li>Questions concerning most recent check-ups and care</li>
+</ul>
 
 For the purpose of identifying responses specifically related to Alzheimer’s disease, 
 this dashboard **focuses more closely on indicators concerning cognitive decline and mental health.**
@@ -62,20 +68,24 @@ This dashboard was designed to support stakeholders who must analyze population-
 patterns to inform policy and intervention decisions.
 
 Public health authorities may use the dashboard to examine relationships between:
+<ul>
 <li>Cognitive decline and age group</li>
 <li>Cognitive decline and demographic</li>
 <li>Geographic/demographic variations in reporting</li>
 <li>Cognitive decline correlated with smoking or alcohol use</li>
+</ul>
 
 By filtering by demographic variables, topic categories, and year ranges, the dashboard supports exploratory analysis
 and evidence-based decision-making. These capabilities align with the dashboard’s goal of helping stakeholders answer 
 critical public health questions and identify meaningful trends across populations. 
 
-Altogether, they can answer key analytical questions such as: 
-<li>Which states show the highest prevalence of cognitive decline?</li>
-<li>Which demographic groups are most at risk?</li>
-<li>How have trends changed over time?</li>
-<li>How do smoking and alcohol use relate to cognitive decline?</li>
+Altogether, they can answer key analytical questions such as:
+<ul>
+    <li>Which states show the highest prevalence of cognitive decline?</li>
+    <li>Which demographic groups are most at risk?</li>
+    <li>How have trends changed over time?</li>
+    <li>How do smoking and alcohol use relate to cognitive decline?</li>
+</ul>
 
 ## Quickstart
 ```bash
