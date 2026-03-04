@@ -37,6 +37,7 @@ def plot_response_trend(df: pd.DataFrame) -> None:
     fig.update_xaxes(dtick=1)
     fig.update_yaxes(ticksuffix="%", rangemode="tozero")
     fig.update_traces(line=dict(width=2), marker=dict(size=8))
+    fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
 
     st.plotly_chart(fig, use_container_width=True)
 
@@ -61,6 +62,7 @@ def plot_demo_bar(df: pd.DataFrame) -> None:
         y="Count",
         title=None,
     )
+    fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
     st.plotly_chart(fig, use_container_width=True)
 
 def plot_sex_bar(df: pd.DataFrame) -> None:
@@ -83,6 +85,7 @@ def plot_sex_bar(df: pd.DataFrame) -> None:
         y="Count",
         title=None,
     )
+    fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
     st.plotly_chart(fig, use_container_width=True)
 
 def plot_map(df: pd.DataFrame) -> None:
@@ -112,7 +115,12 @@ def plot_map(df: pd.DataFrame) -> None:
         labels={"Count": "Number of Responses"}
     )
 
-    fig.update_layout(height=600)
+    fig.update_layout(
+        height=600,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        geo=dict(bgcolor="rgba(0,0,0,0)"),
+    )
 
     st.plotly_chart(fig, use_container_width=True)
 
@@ -139,6 +147,8 @@ def plot_radial_bar(df: pd.DataFrame, value_col: str = "Percentage") -> None:
     fig.update_layout(
         height=600,
         font=dict(size=12),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         polar = dict(
             radialaxis=dict(
                 tickfont=dict(size=14, color="black")
