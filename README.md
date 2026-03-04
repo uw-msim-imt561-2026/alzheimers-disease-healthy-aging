@@ -87,6 +87,9 @@ Altogether, they can answer key analytical questions such as:
     <li>How do smoking and alcohol use relate to cognitive decline?</li>
 </ul>
 
+## Live Dashboard
+https://uw-msim-imt561-2026-alzheimers-disease-healthy-aging-app-zlc5iq.streamlit.app/
+
 ## Quickstart
 ```bash
 # For Windows Users
