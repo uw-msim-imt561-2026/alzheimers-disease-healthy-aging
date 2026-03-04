@@ -234,7 +234,24 @@ def main() -> None:
         body_layout_tabs(df_f)
     else:
         st.subheader("Table")
-        st.dataframe(df_f, use_container_width=True, height=420)
+        #only important rows
+        cols_to_show = [
+            "YearStart",
+            "YearEnd",
+            "LocationDesc",
+            "Class",
+            "Topic",
+            "Data_Value",
+            "AgeGroup",
+            "DemographicCategory",
+            "Demographic"
+        ]
+
+        df_table = df_f[[col for col in cols_to_show if col in df_f.columns]].copy()
+
+        st.dataframe(df_table, use_container_width=True, height=420)
+
+
 
     st.divider()
 

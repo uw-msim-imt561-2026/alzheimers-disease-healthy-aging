@@ -80,6 +80,16 @@ def render_filters(df: pd.DataFrame) -> dict:
         }
         st.sidebar.success("View saved!")
 
+    st.sidebar.markdown("---")
+    st.sidebar.subheader('Clear Session?')
+    st.sidebar.subheader("Warning! This clears your saved views")
+
+    if st.sidebar.button("Clear All Saved Views and restore to default view"):
+        st.session_state.saved_views = {}
+        st.session_state.last_active_view = ""
+        st.sidebar.success("All saved views cleared!")
+        st.rerun()
+
     return {
         "AgeGroup": ageGroup,
         "Demographic": demographic,
