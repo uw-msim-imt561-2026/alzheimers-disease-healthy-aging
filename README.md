@@ -4,6 +4,9 @@ Shane A McGarry <br>
 IMT 561, Winter 2026 <br> 
 Feb 24, 2026
 
+## Live Dashboard
+https://uw-msim-imt561-2026-alzheimers-disease-healthy-aging-app-zlc5iq.streamlit.app/
+
 ## Description
 
 This dashboard presents data from the **CDC’s Alzheimer’s Disease and Healthy Aging** dataset, collected between 2015 and 
@@ -86,9 +89,6 @@ Altogether, they can answer key analytical questions such as:
     <li>How have trends changed over time?</li>
     <li>How do smoking and alcohol use relate to cognitive decline?</li>
 </ul>
-
-## Live Dashboard
-https://uw-msim-imt561-2026-alzheimers-disease-healthy-aging-app-zlc5iq.streamlit.app/
 
 ## Quickstart
 ```bash
