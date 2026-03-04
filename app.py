@@ -103,6 +103,62 @@ def main() -> None:
         section[data-testid="stSidebar"] div[data-baseweb="slider"]{
           padding-top: 6px;
         }
+        
+        div[data-testid="stButton"] button{
+          background: rgba(2,6,23,.55) !important;
+          border: 1px solid rgba(148,163,184,.18) !important;
+          color: rgba(226,232,240,.92) !important;
+          border-radius: 8px !important;
+        }
+        
+        div[data-testid="stButton"] button:hover{
+          border-color: rgba(148,163,184,.4) !important;
+          color: rgba(226,232,240,1) !important;
+        }
+        
+        div[data-testid="stTextInput"] input{
+          background: #0f172b !important;
+          border: 1px solid rgba(148,163,184,.18) !important;
+          color: rgba(226,232,240,.92) !important;
+          border-radius: 8px !important;
+        }
+        
+        div[data-testid="stTextInput"] input:focus{
+          border-color: rgba(148,163,184,.4) !important;
+          outline: none !important;
+        }
+        
+        div[data-testid="stElementToolbar"]{
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+        div[data-testid="stDataFrame"] iframe{
+          color-scheme: dark;
+        }
+        div[data-testid="stDataFrameResizable"]{
+          outline: 2px solid #0d1f2b !important;
+          outline-offset: -1px !important;
+          border-radius: 8px !important;
+          overflow: hidden !important;
+        }
+        
+        div[data-testid="stElementToolbar"] button{
+          background: rgba(13,23,42,.85) !important;
+          border: none !important;
+          border-radius: 8px !important;
+          box-shadow: none !important;
+        }
+        div[data-testid="stElementToolbarButtonContainer"]{
+          background: rgba(13,23,42,.85) !important;
+          border: none !important;
+          border-radius: 8px !important;
+          box-shadow: none !important;
+        }
+        
+        div[data-testid="stElementToolbar"] button svg path{
+          fill: rgba(226,232,240,.75) !important;
+        }
 
         div[data-testid="stMetricDelta"]{
           font-weight: 600;

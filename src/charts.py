@@ -29,14 +29,14 @@ def plot_response_trend(df: pd.DataFrame) -> None:
     fig.add_hline(
         y=overall_avg,
         line_dash="dash",
-        line_color="red",
+        line_color="#f5d76e",
         annotation_text=f"Overall Avg: {overall_avg:.2f}%",
-        annotation_position="top right"
+        annotation_position="bottom right"
     )
 
     fig.update_xaxes(dtick=1)
     fig.update_yaxes(ticksuffix="%", rangemode="tozero")
-    fig.update_traces(line=dict(width=2), marker=dict(size=8))
+    fig.update_traces(line=dict(width=2, color="#6b9fd4"), marker=dict(size=8))
     fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
 
     st.plotly_chart(fig, use_container_width=True)
@@ -61,6 +61,7 @@ def plot_demo_bar(df: pd.DataFrame) -> None:
         labels={"Demographic": "Race/Ethnicity"},
         y="Count",
         title=None,
+        color_discrete_sequence=["#6b9fd4"],
     )
     fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
     st.plotly_chart(fig, use_container_width=True)
@@ -84,6 +85,7 @@ def plot_sex_bar(df: pd.DataFrame) -> None:
         labels={"Demographic": "Sex"},
         y="Count",
         title=None,
+        color_discrete_sequence=["#6b9fd4"],
     )
     fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
     st.plotly_chart(fig, use_container_width=True)
