@@ -35,7 +35,7 @@ def header_metrics(df: pd.DataFrame) -> None:
                 f"{best_year}",
                 delta=f"{delta:+.2f}%",
                 delta_color="normal",
-                help=f"{best_val:.2f}%"
+                help=f"Overall Avg: {best_val:.2f}%"
             )
     with c3:
         q_avg = df.groupby("Topic")["Data_Value"].mean()
@@ -43,7 +43,7 @@ def header_metrics(df: pd.DataFrame) -> None:
             top_q = q_avg.idxmax()
             top_val = q_avg[top_q]
             st.metric(
-                "Inquiry with Highest Avg.",
+                "Topic with Highest Avg.",
                 f"{top_val:.2f}%",
                 delta="High" if top_val > 30 else "Moderate",
                 delta_color="inverse" if top_val > 30 else "normal",
@@ -55,7 +55,7 @@ def header_metrics(df: pd.DataFrame) -> None:
         demo_avg = df.groupby("Demographic")["Data_Value"].mean()
         if not demo_avg.empty:
             top_demo = demo_avg.idxmax()
-            st.metric("Largest Demographic",f"{demo_avg[top_demo]:.2f}%",help=top_demo)
+            st.metric("Largest Demographic",top_demo,help=f"Avg. Reports: {demo_avg[top_demo]:.2f}%")
         else:
             st.metric("Largest Demographic", "—")
     with c5:
@@ -63,26 +63,29 @@ def header_metrics(df: pd.DataFrame) -> None:
         cog = (df[df["Class"].isin(["Mental Health", "Cognitive Decline"])]["Data_Value"].dropna().reset_index(drop=True))
         sample = min(len(smokealc), len(cog))
         if sample == 0:
-            st.metric("Smoking vs Cognitive Corr.", "—")
+            st.metric("Smoke/Alcohol vs Cognitive Corr.", "—")
         else:
             r = smokealc[:sample].corr(cog[:sample])
 
             if abs(r) < 0.2:
                 delta_text = "Neutral"
                 delta_color = "off"
+                delta_arrow = "off"
             elif r > 0:
                 delta_text = "Positive"
                 delta_color = "normal"
+                delta_arrow = "up"
             else:
                 delta_text = "Negative"
                 delta_color = "inverse"
-
+                delta_arrow = "down"
             st.metric(
-                "Smoking/Drinking vs Cognitive Corr.",
+                "Smoke/Alcohol vs Cognitive Corr.",
                 f"{r:.2f}",
                 help=f"Sample size: {sample}",
                 delta=delta_text,
-                delta_color=delta_color
+                delta_color=delta_color,
+                delta_arrow=delta_arrow
             )
 
 

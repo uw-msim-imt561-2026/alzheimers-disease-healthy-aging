@@ -65,6 +65,33 @@ This structure enables comparative analysis across distinct population segments 
 evaluation. As a result, stakeholders can identify disparities and patterns to leverage these insights 
 to inform public health planning, policy development, and targeted risk assessment for specific populations.
 
+### Ethical Considerations
+Although the BRFSS dataset is publicly available and aggregated, several ethical considerations remain.
+#### Self-reported and percentage-based survey data 
+<ul>
+  <li>The dataset is based on self-reported survey responses and reports aggregated percentages rather than 
+individual clinical diagnoses. This may introduce reporting bias, and results should be interpreted as population-level
+trends rather than precise clinical measures of Alzheimer’s disease or cognitive decline.</li>
+</ul>
+
+#### Substance usage correlation
+<ul>
+  <li>Observed metrics between factors such as smoking, alcohol use, and cognitive decline represent correlations 
+between variables and should not be interpreted as causal relationships.</li>
+</ul>
+
+#### Exploratory analysis and responsible interpretation
+<ul>
+<li>
+Differences observed across demographic groups or geographic regions should also be interpreted carefully, as variations may reflect broader structural 
+factors such as healthcare access, socioeconomic conditions, or environmental influences rather than inherent group 
+differences.
+</li>
+<li>This dashboard is designed to explore patterns and trends within the dataset and should not be used to draw 
+definitive conclusions without additional research or supporting evidence.</li>
+</ul>
+
+
 ### Context & Goals
 
 This dashboard was designed to support stakeholders who must analyze population-level health trends and demographic risk

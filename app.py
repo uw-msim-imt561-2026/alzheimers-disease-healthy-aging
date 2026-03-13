@@ -186,6 +186,15 @@ def main() -> None:
         div[data-baseweb="tooltip"] *{
         color: rgba(226,232,240,.92) !important;
         }
+        
+        div[data-testid="stMetricValue"] {
+        font-size: 1.5rem;
+        }
+        
+        div[data-testid="stCaptionContainer"] {
+        opacity: 100%;
+        }
+        
         </style>
         """, unsafe_allow_html=True)
 
@@ -201,7 +210,11 @@ def main() -> None:
             "Dataset last updated on: [February 14th, 2025](https://data.cdc.gov/Healthy-Aging/Alzheimer-s-Disease-and-Healthy-Aging-Data/hfr9-rurv/about_data)")
 
     df = load_data("data/sample.csv")
-
+    st.header("Key Performance Indicators")
+    st.caption(
+        "Metrics of the indicators will change based on selected filters.  \n"
+        "**Tip:** Hover over the question mark icons (?) next to each metric for more details."
+    )
     # Basic Stats to check for data
     # row_count = len(df)
     # st.write("Total Number of Rows:", row_count)
