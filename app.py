@@ -247,6 +247,9 @@ def main() -> None:
         body_layout_tabs(df_f)
     else:
         st.subheader("Table")
+        st.write("Condensed table view displaying row counts along with location, time period, class, and topic.")
+        st.write("Tip: Hover over table to view options for download, searching specific values, or full screen views.")
+
         #only important rows
         cols_to_show = [
             "YearStart",

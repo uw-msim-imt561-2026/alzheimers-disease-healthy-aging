@@ -90,7 +90,7 @@ def header_metrics(df: pd.DataFrame) -> None:
 
 
 def body_layout_tabs(df: pd.DataFrame) -> None:
-    """Tabs layout with 3 default tabs."""
+    """Tabs layout with 4 default tabs."""
     t1, t2, t3, t4 = st.tabs(["Demographic", "Trends","Map", "Polar Chart"])
 
     with t1:
@@ -98,9 +98,9 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
 
         with st.expander("How to interact with this chart"):
             st.write("""
-            - Hover over bars to view column name and counts
-            - Plots will appear based on topics chosen
-            - Hover over plot for more options, including fullscreen view and downloading plot
+            - Hover over bars to view column name and counts.
+            - Plots will appear based on topics chosen.
+            - Hover over plot for more options, including fullscreen view and downloading plot.
             """)
 
         if "Race/Ethnicity" in categories:
@@ -118,10 +118,10 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
         st.write("Average reported percentage by year with overall average reference line.")
         with st.expander("How to interact with this chart"):
             st.write("""
-            - Hover over coordinate points to see each percentage values
-            - Blue line is average percent count for each year
-            - Yellow dashed line is average percent count for all recorded years 
-            - Hover over plot for more options, including fullscreen view and downloading plot
+            - Hover over coordinate points to see each percentage values.
+            - Blue line is average percent count for each year.
+            - Yellow dashed line is average percent count for all recorded years .
+            - Hover over plot for more options, including fullscreen view and downloading plot.
             """)
         plot_response_trend(df)
 
@@ -130,9 +130,9 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
         st.write("Shows counts of selected topics on a Red-Green Scale, with red being higher prevalence")
         with st.expander("How to interact with this chart"):
             st.write("""
-            - Hover over state to view state abbreviation and number of responses
-            - Colors adjust based on relative counts from topics chosen (i.e. red states have more alzheimer's prevalence, green states have relatively less alzheimer's prevalence)
-            - Hover over plot for more options, including fullscreen view and downloading plot
+            - Hover over state to view state abbreviation and number of responses.
+            - Colors adjust based on relative counts from topics chosen (i.e. red states have more alzheimer's prevalence, green states have relatively less alzheimer's prevalence).
+            - Hover over plot for more options, including fullscreen view and downloading plot.
             """)
         plot_map(df)
 
@@ -141,9 +141,9 @@ def body_layout_tabs(df: pd.DataFrame) -> None:
         st.write("Shows relative percentage of responses grouped by state.")
         with st.expander("How to interact with this chart"):
             st.write("""
-            - Hover over bars to view section abbreviation and counts
-            - Colors adjust based on relative counts from topics chosen, on a tan to red scale (i.e. red sections have more alzheimer's prevalence, tan sections have relatively less alzheimer's prevalence)
-            - Hover over plot for more options, including fullscreen view and downloading plot
+            - Hover over bars to view section abbreviation and counts.
+            - Colors adjust based on relative counts from topics chosen, on a tan to red scale (i.e. red sections have more alzheimer's prevalence, tan sections have relatively less alzheimer's prevalence).
+            - Hover over plot for more options, including fullscreen view and downloading plot.
             """)
         valid_states = [
             "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
