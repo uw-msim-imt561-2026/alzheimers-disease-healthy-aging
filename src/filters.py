@@ -7,43 +7,27 @@ def render_filters(df: pd.DataFrame) -> dict:
 
     st.sidebar.header("Filters")
 
-    # --- Initialize saved_views ---
-    if "saved_views" not in st.session_state:
-        st.session_state.saved_views = {}
+    # --- Reset filters if requested ---
+    if st.session_state.get("reset_filters", False):
+        st.session_state["AgeGroup"] = "All Age Groups"
+        st.session_state["Demographic"] = "All"
+        st.session_state["Topic"] = []
+        st.session_state["rt_range"] = (
+            int(df["YearStart"].min()),
+            int(df["YearEnd"].max())
+        )
+        st.session_state["cap_outliers"] = False
 
-    if "active_view" not in st.session_state:
-        st.session_state.active_view = ""
-
-    # --- Determine selected view ---
-    saved_keys = list(st.session_state.saved_views.keys())
-    selected_view = st.sidebar.selectbox("Switch View", ["Default View/ Full Dataset"] + saved_keys, key="active_view")
-
-    # selected view?
-    if "last_active_view" not in st.session_state:
-        st.session_state.last_active_view = ""
-
-    if st.session_state.active_view != st.session_state.last_active_view:
-
-        if st.session_state.active_view in st.session_state.saved_views:
-            saved = st.session_state.saved_views[st.session_state.active_view]
-
-            for key, value in saved.items():
-                st.session_state[key] = value
-
-        st.session_state.last_active_view = st.session_state.active_view
-        st.rerun()
+        st.session_state.reset_filters = False
 
     # --- Prepare defaults ---
-    if st.session_state.active_view in st.session_state.saved_views:
-        defaults = st.session_state.saved_views[st.session_state.active_view]
-    else:
-        defaults = {
-            "AgeGroup": st.session_state.get("AgeGroup", "All Age Groups"),
-            "Demographic": st.session_state.get("Demographic", "All"),
-            "Topic": st.session_state.get("Topic", []),
-            "rt_range": st.session_state.get(
-                "rt_range", (int(df["YearStart"].min()), int(df["YearEnd"].max()))
-            ),
+
+    defaults = {
+        "AgeGroup": st.session_state.get("AgeGroup", "All Age Groups"),
+        "Demographic": st.session_state.get("Demographic", "All"),
+        "Topic": st.session_state.get("Topic", []),
+        "rt_range": st.session_state.get(
+            "rt_range", (int(df["YearStart"].min()), int(df["YearEnd"].max()))),
             "cap_outliers": st.session_state.get("cap_outliers", False),
         }
 
@@ -66,29 +50,13 @@ def render_filters(df: pd.DataFrame) -> dict:
 
     cap_outliers = st.sidebar.checkbox("Cap extreme data values", value=defaults["cap_outliers"], key="cap_outliers")
 
-    # --- Save view section ---
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("Saved Views")
-    view_name = st.sidebar.text_input("Save current view as:")
-
-    if st.sidebar.button("Save View") and view_name:
-        st.session_state.saved_views[view_name] = {
-            "AgeGroup": ageGroup,
-            "Demographic": demographic,
-            "Topic": topic,
-            "rt_range": rt_range,
-            "cap_outliers": cap_outliers,
-        }
-        st.sidebar.success("View saved!")
 
     st.sidebar.markdown("---")
     st.sidebar.subheader('Clear Session?')
-    st.sidebar.subheader("Warning! This clears your saved views")
+    st.sidebar.subheader("Warning! This button will remove any selections you have made!")
 
     if st.sidebar.button("Clear All Saved Views and restore to default view"):
-        st.session_state.saved_views = {}
-        st.session_state.last_active_view = ""
-        st.sidebar.success("All saved views cleared!")
+        st.session_state.reset_filters = True
         st.rerun()
 
     return {

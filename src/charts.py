@@ -107,21 +107,27 @@ def plot_map(df: pd.DataFrame) -> None:
         st.warning("No data available.")
         return
 
+    global_min = 0
+    global_max = df.groupby("LocationAbbr").size().max()
+
     fig = px.choropleth(
         state_counts,
         locations="LocationAbbr",
         locationmode="USA-states",
         color="Count",
         scope="usa",
-        color_continuous_scale=[(0, "green"), (0.5, "yellow"), (1, "red")],
+        color_continuous_scale="YlOrRd",
+        range_color=(global_min, global_max),
         labels={"Count": "Number of Responses"}
     )
 
     fig.update_layout(
+        title="Number of Responses by State (Darker = Higher Count)",
+        title_font=dict(color="white"),
         height=600,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        geo=dict(bgcolor="rgba(0,0,0,0)"),
+        geo=dict(bgcolor="rgba(0,0,0,0)")
     )
 
     st.plotly_chart(fig, use_container_width=True)
@@ -138,12 +144,12 @@ def plot_radial_bar(df: pd.DataFrame, value_col: str = "Percentage") -> None:
 
     fig = px.bar_polar(
         df_sorted,
-        r=value_col,  # radial length = percentage
-        theta="LocationAbbr",  # angle = state
-        color=value_col,  # color intensity = value
-        color_continuous_scale=px.colors.sequential.Oranges,
+        r=value_col,
+        theta="LocationAbbr",
+        color=value_col,
+        color_continuous_scale="YlOrRd", #yummy organe
         template="ggplot2",
-        hover_data = {"LocationAbbr": True, value_col: ":.2f"}
+        hover_data={"LocationAbbr": True, value_col: ":.2f"}
     )
 
     fig.update_layout(
@@ -153,7 +159,7 @@ def plot_radial_bar(df: pd.DataFrame, value_col: str = "Percentage") -> None:
         plot_bgcolor="rgba(0,0,0,0)",
         polar = dict(
             radialaxis=dict(
-                tickfont=dict(size=14, color="black")
+                tickfont=dict(size=1, color="white")
             )
         )
     )
