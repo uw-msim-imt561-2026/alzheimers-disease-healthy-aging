@@ -62,8 +62,15 @@ this dashboard **focuses more closely on indicators concerning cognitive decline
 
 The data is aggregated by age group, demographic characteristics (sex and race/ethnicity), state or region, and year. 
 This structure enables comparative analysis across distinct population segments and supports longitudinal trend 
-evaluation. As a result, stakeholders can identify disparities and patterns to leverage these insights 
-to inform public health planning, policy development, and targeted risk assessment for specific populations.
+evaluation. _However, demographic categories are reported as one single aggregated group (e.g., Male, Female, White, 
+Hispanic) rather than as intersectional groups within the same observations._
+
+As a result, the dataset does not support multi-select filtering or analysis of combined demographic attributes, 
+such as sex and race/ethnicity simultaneously, because the groups are reported independently rather than as combined 
+demographic observations.
+
+Stakeholders can still identify disparities and patterns across population segments to inform public 
+health planning, policy development, and targeted risk assessment for specific populations.
 
 ### Ethical Considerations
 Although the BRFSS dataset is publicly available and aggregated, several ethical considerations remain.

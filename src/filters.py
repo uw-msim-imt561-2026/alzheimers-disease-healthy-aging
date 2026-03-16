@@ -54,7 +54,8 @@ def render_filters(df: pd.DataFrame) -> dict:
 
     dem_options = ["All"] + sorted(df["Demographic"].dropna().astype(str).unique())
     dem_index = dem_options.index(defaults["Demographic"]) if defaults["Demographic"] in dem_options else 0
-    demographic = st.sidebar.selectbox("Sex/Ethnicity", dem_options, index=dem_index, key="Demographic")
+    demographic = st.sidebar.selectbox("Demographic (Sex/Race/Ethnicity)", dem_options, index=dem_index, key="Demographic",
+    help="Due to the dataset structure, Sex and Race/Ethnicity groups were recorded as a single demographic category and cannot be filtered independently.")
 
     topic_options = sorted(df["Topic"].dropna().astype(str).unique())
     topic = st.sidebar.multiselect("Topic", topic_options, default=defaults["Topic"], key="Topic")

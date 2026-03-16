@@ -9,13 +9,13 @@ from src.charts import plot_response_trend, plot_demo_bar, plot_sex_bar, plot_ma
 def header_metrics(df: pd.DataFrame) -> None:
     c1, c2, c3, c4, c5 = st.columns(5)
     with c1:
-        st.metric("Total Records", len(df))
+        st.metric("Total Survey Reports", len(df))
     with c2:
         dv = pd.to_numeric(df["Data_Value"], errors="coerce")
         dff = df.assign(Data_Value=dv).dropna(subset=["YearEnd", "Data_Value"])
 
         if dff.empty:
-            st.metric("Year with Highest Avg.", "—", delta="—")
+            st.metric("Year with Highest Avg. Reports", "—", delta="—")
         else:
             overall_avg = dff["Data_Value"].mean()
 
@@ -31,7 +31,7 @@ def header_metrics(df: pd.DataFrame) -> None:
             delta = best_val - overall_avg
 
             st.metric(
-                "Year with Highest Avg.",
+                "Year with Highest Avg. Reports",
                 f"{best_year}",
                 delta=f"{delta:+.2f}%",
                 delta_color="normal",
@@ -43,14 +43,14 @@ def header_metrics(df: pd.DataFrame) -> None:
             top_q = q_avg.idxmax()
             top_val = q_avg[top_q]
             st.metric(
-                "Topic with Highest Avg.",
+                "Topic with Highest Avg. Reports",
                 f"{top_val:.2f}%",
-                delta="High" if top_val > 30 else "Moderate",
-                delta_color="inverse" if top_val > 30 else "normal",
+                delta="High Average" if top_val > 20 else "Moderate Average",
+                delta_color="inverse" if top_val > 20 else "off",
                 help=top_q
             )
         else:
-            st.metric("Inquiry with Highest Avg.", "—")
+            st.metric("Topic with Highest Avg. Reports", "—")
     with c4:
         demo_avg = df.groupby("Demographic")["Data_Value"].mean()
         if not demo_avg.empty:
@@ -63,24 +63,24 @@ def header_metrics(df: pd.DataFrame) -> None:
         cog = (df[df["Class"].isin(["Mental Health", "Cognitive Decline"])]["Data_Value"].dropna().reset_index(drop=True))
         sample = min(len(smokealc), len(cog))
         if sample == 0:
-            st.metric("Smoke/Alcohol vs Cognitive Corr.", "—")
+            st.metric("Correlation Coefficient     \n (Smoking/Alcohol vs Cognitive Decline)", "—", help = "No Sample Size")
         else:
             r = smokealc[:sample].corr(cog[:sample])
-
-            if abs(r) < 0.2:
-                delta_text = "Neutral"
+            strength = abs(r)
+            if strength < 0.1:
+                delta_text = "No Relationship"
                 delta_color = "off"
                 delta_arrow = "off"
             elif r > 0:
-                delta_text = "Positive"
+                delta_text = "Positive Relationship"
                 delta_color = "normal"
                 delta_arrow = "up"
             else:
-                delta_text = "Negative"
+                delta_text = "Negative Relationship"
                 delta_color = "inverse"
                 delta_arrow = "down"
             st.metric(
-                "Smoke/Alcohol vs Cognitive Corr.",
+                "Correlation (Smoking vs Cognitive Decline)",
                 f"{r:.2f}",
                 help=f"Sample size: {sample}",
                 delta=delta_text,

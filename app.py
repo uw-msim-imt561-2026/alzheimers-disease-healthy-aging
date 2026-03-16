@@ -48,6 +48,10 @@ def main() -> None:
         div[data-testid="stMarkdownContainer"] a{
           color: #61a5ff !important;
         }
+        
+        .st-emotion-cache-1q82h82 {
+        white-space: normal;
+        }
 
         header[data-testid="stHeader"]{
           background: rgba(13, 23, 42, 0.92);
@@ -66,10 +70,6 @@ def main() -> None:
         div[data-testid="stMarkdownContainer"] a{
           color: rgba(147,197,253,.95) !important;
           text-decoration: underline;
-        }
-
-        div[data-testid="stMarkdownContainer"] p{
-          color: rgba(226,232,240,.82);
         }
 
         div[data-testid="stMetricLabel"]{
@@ -162,7 +162,6 @@ def main() -> None:
 
         div[data-testid="stMetricDelta"]{
           font-weight: 600;
-          filter: brightness(2.5) saturate(1.5) !important;
         }
         
         div[data-testid="stTooltipHoverTarget"] svg{
@@ -212,7 +211,7 @@ def main() -> None:
     df = load_data("data/sample.csv")
     st.header("Key Performance Indicators")
     st.caption(
-        "Metrics of the indicators will change based on selected filters.  \n"
+        "Metrics of the indicators will change based on selected filters. Indicator metrics are based on overall data.  \n"
         "**Tip:** Hover over the question mark icons (?) next to each metric for more details."
     )
     # Basic Stats to check for data
