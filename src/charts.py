@@ -61,9 +61,12 @@ def plot_demo_bar(df: pd.DataFrame) -> None:
         labels={"Demographic": "Race/Ethnicity"},
         y="Count",
         title=None,
-        color_discrete_sequence=["#6b9fd4"],
+        color_discrete_sequence=["#A786DD"],
     )
-    fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
+    )
     st.plotly_chart(fig, use_container_width=True)
 
 def plot_sex_bar(df: pd.DataFrame) -> None:
@@ -76,18 +79,28 @@ def plot_sex_bar(df: pd.DataFrame) -> None:
         .groupby("Demographic", as_index=False)
         .size()
         .rename(columns={"size": "Count"})
-        .sort_values("Count", ascending=False)
     )
 
     fig = px.bar(
         agg,
         x="Demographic",
-        labels={"Demographic": "Sex"},
         y="Count",
+        color="Demographic",
+        labels={"Demographic": "Sex"},
         title=None,
-        color_discrete_sequence=["#6b9fd4"],
+        category_orders={"Demographic": ["Female", "Male"]},
+        color_discrete_map={
+            "Female": "#E8A8BE",
+            "Male": "#EAD79B",
+        },
     )
-    fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+
+    fig.update_layout(
+        showlegend=False,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
+    )
+
     st.plotly_chart(fig, use_container_width=True)
 
 def plot_map(df: pd.DataFrame) -> None:

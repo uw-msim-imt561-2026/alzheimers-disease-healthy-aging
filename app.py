@@ -16,6 +16,7 @@ def main() -> None:
 
     st.title(""" :material/medical_information: CDC Alzheimer's Disease and Healthy Aging Dashboard """)
 
+
     st.markdown("""
         <style>
         div[data-testid="stVerticalBlock"]:has(#info-box){
@@ -48,7 +49,7 @@ def main() -> None:
         div[data-testid="stMarkdownContainer"] a{
           color: #61a5ff !important;
         }
-        
+
         .st-emotion-cache-1q82h82 {
         white-space: normal;
         }
@@ -103,99 +104,162 @@ def main() -> None:
         section[data-testid="stSidebar"] div[data-baseweb="slider"]{
           padding-top: 6px;
         }
-        
+
         div[data-testid="stButton"] button{
           background: rgba(2,6,23,.55) !important;
           border: 1px solid rgba(148,163,184,.18) !important;
           color: rgba(226,232,240,.92) !important;
           border-radius: 8px !important;
         }
-        
+
         div[data-testid="stButton"] button:hover{
           border-color: rgba(148,163,184,.4) !important;
           color: rgba(226,232,240,1) !important;
         }
-        
+
         div[data-testid="stTextInput"] input{
           background: #0f172b !important;
           border: 1px solid rgba(148,163,184,.18) !important;
           color: rgba(226,232,240,.92) !important;
           border-radius: 8px !important;
         }
-        
+
         div[data-testid="stTextInput"] input:focus{
           border-color: rgba(148,163,184,.4) !important;
           outline: none !important;
         }
+
+        # div[data-testid="stElementToolbar"]{
+        #   background: transparent !important;
+        #   box-shadow: none !important;
+        #   border: none !important;
+        # }
         
-        div[data-testid="stElementToolbar"]{
-          background: transparent !important;
-          box-shadow: none !important;
-          border: none !important;
-        }
         div[data-testid="stDataFrame"] iframe{
           color-scheme: dark;
         }
-        div[data-testid="stDataFrameResizable"]{
-          outline: 2px solid #0d1f2b !important;
-          outline-offset: -1px !important;
-          border-radius: 8px !important;
-          overflow: hidden !important;
-        }
         
-        div[data-testid="stElementToolbar"] button{
-          background: rgba(13,23,42,.85) !important;
-          border: none !important;
-          border-radius: 8px !important;
-          box-shadow: none !important;
-        }
-        div[data-testid="stElementToolbarButtonContainer"]{
-          background: rgba(13,23,42,.85) !important;
-          border: none !important;
-          border-radius: 8px !important;
-          box-shadow: none !important;
-        }
-        
-        div[data-testid="stElementToolbar"] button svg path{
-          fill: rgba(226,232,240,.75) !important;
-        }
+        # div[data-testid="stDataFrameResizable"]{
+        #   outline: 2px solid #0d1f2b !important;
+        #   outline-offset: -1px !important;
+        #   border-radius: 8px !important;
+        #   overflow: hidden !important;
+        # }
+
+        # div[data-testid="stElementToolbar"] button{
+        #   background: rgba(13,23,42,.85) !important;
+        #   border: none !important;
+        #   border-radius: 8px !important;
+        #   box-shadow: none !important;
+        # }
+        # 
+        # div[data-testid="stElementToolbarButtonContainer"]{
+        #   background: rgba(13,23,42,.85) !important;
+        #   border: none !important;
+        #   border-radius: 8px !important;
+        #   box-shadow: none !important;
+        # }
+        # 
+        # div[data-testid="stElementToolbar"] button svg path{
+        #   fill: rgba(226,232,240,.75) !important;
+        # }
 
         div[data-testid="stMetricDelta"]{
           font-weight: 600;
         }
-        
-        div[data-testid="stTooltipHoverTarget"] svg{
-        color: rgba(226,232,240,.75) !important;
-        fill: rgba(226,232,240,.75) !important;
-        }
-        
-        div[data-testid="stTooltipHoverTarget"] svg{
-        color: rgba(226,232,240,.75) !important;
-        fill: rgba(226,232,240,.75) !important;
-        }
-        
-        div[data-testid="stTooltipContent"],
-        div[data-baseweb="tooltip"]{
-        background: #1e293b !important;
-        border: 1px solid rgba(148,163,184,.25) !important;
-        border-radius: 8px !important;
-        }
-        
-        div[data-testid="stTooltipContent"] *,
-        div[data-baseweb="tooltip"] *{
-        color: rgba(226,232,240,.92) !important;
-        }
-        
+
+        # div[data-testid="stTooltipHoverTarget"] svg{
+        # color: rgba(226,232,240,.75) !important;
+        # fill: rgba(226,232,240,.75) !important;
+        # }
+        # 
+        # div[data-testid="stTooltipContent"],
+        # div[data-baseweb="tooltip"]{
+        # background: #1e293b !important;
+        # border: 1px solid rgba(148,163,184,.25) !important;
+        # border-radius: 8px !important;
+        # }
+        # 
+        # div[data-testid="stTooltipContent"] *,
+        # div[data-baseweb="tooltip"] *{
+        # color: rgba(226,232,240,.92) !important;
+        # }
+
         div[data-testid="stMetricValue"] {
         font-size: 1.5rem;
         }
-        
+
         div[data-testid="stCaptionContainer"] {
         opacity: 100%;
         }
         
+        div[data-testid="stDivider"] {
+        background-color: rgba(226,232,240,.10) !important;
+        }
+        
+        div[data-testid="stDivider"] hr {
+        border: none !important;
+        height: 1px !important;
+        background: rgba(226,232,240,.10) !important;
+        }
+        
+        div[data-baseweb="tab-border"] {
+        background: rgba(226,232,240,.10) !important;
+        }
+        
+        button[role="tab"] {
+        border-color: transparent !important;
+        box-shadow: none !important;
+        }
+        
+        div[data-testid="stExpander"]{
+          border: 1px solid rgba(226,232,240,.10) !important;
+          border-radius: 10px !important;
+          background: rgba(255,255,255,.02) !important;
+          box-shadow: none !important;
+          overflow: hidden !important;
+        }
+        
+        div[data-testid="stExpander"] details{
+          border: none !important;
+          box-shadow: none !important;
+          background: transparent !important;
+        }
+        
+        div[data-testid="stExpander"] summary{
+          background: rgba(255,255,255,.02) !important;
+          border: none !important;
+          box-shadow: none !important;
+          color: rgba(226,232,240,.92) !important;
+          padding: 0.65rem 0.9rem !important;
+          border-radius: 10px !important;
+        }
+        
+        div[data-testid="stExpander"] summary:hover{
+          background: rgba(226,232,240,.05) !important;
+        }
+        
+        div[data-testid="stExpander"] div[role="region"]{
+          border-top: 1px solid rgba(226,232,240,.08) !important;
+          background: rgba(255,255,255,.015) !important;
+        }
+        
+        div[data-testid="stExpander"] *{
+          box-shadow: none !important;
+        }
+        
+        div[data-testid="stDivider"],
+        div[data-testid="stDivider"] > div,
+        div[data-testid="stDivider"] hr {
+          border: none !important;
+          box-shadow: none !important;
+          height: 1px !important;
+          background: rgba(226,232,240,.08) !important;
+        }
+        
         </style>
         """, unsafe_allow_html=True)
+
 
     st.markdown('<span id="info-box"></span>', unsafe_allow_html=True)
 
@@ -212,7 +276,7 @@ def main() -> None:
     st.header("Key Performance Indicators")
     st.caption(
         "Metrics of the indicators will change based on selected filters. Indicator metrics are based on overall data.  \n"
-        "**Tip:** Hover over the question mark icons (?) next to each metric for more details."
+        "**Tip:** Hover over the question mark icons :material/help: next to each metric for more details."
     )
     # Basic Stats to check for data
     # row_count = len(df)
@@ -229,7 +293,10 @@ def main() -> None:
     df_f = apply_filters(df, selections)
 
     header_metrics(df_f)
-    st.divider()
+    st.markdown(
+        '<hr style="border:none;height:1px;background:rgba(226,232,240,.2);margin:1rem 0 1.25rem 0;">',
+        unsafe_allow_html=True
+    )
 
     # -------------------------
     # Main body
