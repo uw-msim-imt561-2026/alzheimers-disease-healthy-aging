@@ -67,6 +67,17 @@ def plot_demo_bar(df: pd.DataFrame) -> None:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)"
     )
+
+    fig.update_yaxes(
+        showgrid=True,
+        gridcolor="rgba(226,232,240,.14)",
+        gridwidth=1
+    )
+
+    fig.update_xaxes(
+        showgrid=False
+    )
+
     st.plotly_chart(fig, use_container_width=True)
 
 def plot_sex_bar(df: pd.DataFrame) -> None:
@@ -99,6 +110,16 @@ def plot_sex_bar(df: pd.DataFrame) -> None:
         showlegend=False,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)"
+    )
+
+    fig.update_yaxes(
+        showgrid=True,
+        gridcolor="rgba(226,232,240,.14)",
+        gridwidth=1
+    )
+
+    fig.update_xaxes(
+        showgrid=False
     )
 
     st.plotly_chart(fig, use_container_width=True)
